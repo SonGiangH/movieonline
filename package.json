@@ -1,6 +1,6 @@
 {
   "homepage": "http://SonGiangH.github.io/movieonline",
-  "name": "moviewebapp",  
+  "name": "movieonline",  
   "version": "0.1.0",
   "private": true,
   "dependencies": {
