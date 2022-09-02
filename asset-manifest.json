@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/movieOnline/static/css/main.24585929.css",
+    "main.js": "/movieOnline/static/js/main.f92d368f.js",
+    "static/js/787.e1f436df.chunk.js": "/movieOnline/static/js/787.e1f436df.chunk.js",
+    "static/media/logo.png": "/movieOnline/static/media/logo.298e7311ec9d298a3caf.png",
+    "static/media/loading__spinner.gif": "/movieOnline/static/media/loading__spinner.0f8e3ead3dcf6f8b6f69.gif",
+    "static/media/slick.svg": "/movieOnline/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/movieOnline/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/movieOnline/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/movieOnline/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/movieOnline/index.html",
+    "main.24585929.css.map": "/movieOnline/static/css/main.24585929.css.map",
+    "main.f92d368f.js.map": "/movieOnline/static/js/main.f92d368f.js.map",
+    "787.e1f436df.chunk.js.map": "/movieOnline/static/js/787.e1f436df.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.24585929.css",
+    "static/js/main.f92d368f.js"
+  ]
+}
