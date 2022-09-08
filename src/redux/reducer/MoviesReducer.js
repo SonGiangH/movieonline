@@ -1,16 +1,16 @@
 const stateDefault = {
-    arrMovieTrend: [{}],
-    genres: [{}],
-    genresMovie: [{}],
-    genresTV: [{}],
-    popularMovies: [{}],
-    topRateMovies: [{}],
-    hotMovies: [{}],
-    upcomingMovies: [{}],
-    categoryStatus: [{}],
-    movie: [{}],
-    movieCredit: [{}],
-    reviews: [{}]
+    arrMovieTrend: [],
+    genres: [],
+    genresMovie: [],
+    genresTV: [],
+    popularMovies: [],
+    topRateMovies: [],
+    hotMovies: [],
+    upcomingMovies: [],
+    categoryStatus: [],
+    movie: [],
+    movieCredit: [],
+    reviews: []
 }
 
 //funtion

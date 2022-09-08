@@ -10,10 +10,12 @@ import 'tw-elements'
 import MovieInfo from './MovieInfo/MovieInfo'
 import { getMovieCreditAction } from '../../redux/action/getMovieCreditAction'
 import { getReviewMvAction } from '../../redux/action/getReviewMvAction'
+import MovieRating from './MovieRating/MovieRating'
 
 export default function MovieDetails() {
     const movieId = useParams()
     const { movie, movieCredit, reviews } = useSelector(state => state.MoviesReducer)
+    console.log(movie)
 
     const dispatch = useDispatch()
 
@@ -55,7 +57,7 @@ export default function MovieDetails() {
                                 })}
                             </div>
                         </div>
-                        <a className="flex gap-6 items-center pl-6 pr-12 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mt-28 mb-32 ml-48 " href="/movie/361743/watch">
+                        <a className="flex gap-6 items-center pl-6 pr-12 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mt-28 mb-32" href="/movie/361743/watch">
                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"></path>
                             </svg><span className="text-lg font-medium">WATCH</span>
@@ -79,8 +81,19 @@ export default function MovieDetails() {
                         </button>
                     </div>
                 </div>
-                <div className="w-[1520px] mx-auto">
-                    <div className="movie__rating"></div>
+                <div className="w-[1520px] flex ml-10">
+                    <div className="movie__rating w-[10%] flex flex-col relative">
+                        {/* Border Right div */}
+                        <div className="absolute top-[15%] bottom-0 w-full" style={{ borderRight: "1px solid rgb(229 231 235/0.15)" }}></div>
+                        <div className="flex flex-col gap-8 items-center w-[50%] my-40">
+                            <p className="text-white uppercase text-xl font-semibold">RATING</p>
+                            <MovieRating movie={movie} />
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <p className="text-white uppercase text-xl font-semibold">RUNTIME</p>
+                            <p className="text-gray-400 text-xl">{movie.runtime} min</p>
+                        </div>
+                    </div>
                     <div className="movie__details w-[60%]">
                         <MovieInfo movie={movie} credit={movieCredit} reviews={reviews} />
                     </div>
@@ -139,7 +152,6 @@ export default function MovieDetails() {
                     </li>
                 </ul>
             </div>
-
             {renderMovieDetail()}
         </div>
     )

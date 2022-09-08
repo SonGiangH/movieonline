@@ -9,8 +9,24 @@ export default function MovieInfo(props) {
     const movieCredit = props.credit
     const reviews = props.reviews
 
-    // Hook Hande length of movie review
-    const [isReadingMore, setIsReadingMore] = useState(false)
+    const [isReadingMore, setIsReadingMore] = useState(false);
+
+    // Readmore function
+    // const ReadMore = ({ children }) => {
+    //     const text = children;
+    //     const [isReadMore, setIsReadMore] = useState(true);
+    //     const toggleReadMore = () => {
+    //         setIsReadMore(!isReadMore);
+    //     };
+    //     return (
+    //         <p className="text">
+    //             {isReadMore ? text.slice(0, 150) : text}
+    //             <span onClick={toggleReadMore} className="read-or-hide">
+    //                 {isReadMore ? "...read more" : " Show less"}
+    //             </span>
+    //         </p>
+    //     );
+    // };
 
     //function create tabs
     let tabs = document.querySelectorAll(".tab")
@@ -52,7 +68,7 @@ export default function MovieInfo(props) {
             </div>
             <div className="mt-6 relative">
                 {/* Overall */}
-                <div role="tabpanel" id="panel-1" className="tab-panel p-6 transition duration-300">
+                <div role="tabpanel" id="panel-1" className="tab-panel p-6 transition duration-300 ml-14">
                     <h2 className="text-2xl italic text-center text-white">{movie.tagline}</h2>
                     <div className="story__section mb-8">
                         <h1 className="uppercase mb-3 font-medium text-white">Story</h1>
@@ -71,7 +87,7 @@ export default function MovieInfo(props) {
                     </div>
                 </div>
                 {/* Cast */}
-                <div role="tabpanel" id="panel-2" className="absolute top-0 invisible opacity-0 tab-panel p-6 transition duration-300">
+                <div role="tabpanel" id="panel-2" className="absolute top-0 left-10 invisible opacity-0 tab-panel p-6 transition duration-300">
                     <div className="grid grid-cols-2 gap-x-60 gap-y-8">
                         {movieCredit.cast?.filter((item, index) => index < 8).map((actor, index) => {
                             return (
@@ -94,7 +110,7 @@ export default function MovieInfo(props) {
                     <div className="flex flex-col max-h-[400px] overflow-y-auto pr-4">
                         {reviews?.map((author, index) => {
                             return (
-                                <div className="flex justify-between mb-5" key={index}>
+                                <div className="flex justify-between mb-10" key={index}>
                                     <div className="img__container w-[60px] h-[60px] rounded-full overflow-hidden">
                                         <img src={avatar} alt="avatar" />
                                     </div>
@@ -106,7 +122,7 @@ export default function MovieInfo(props) {
                                                     &nbsp; Show less
                                                 </button>
                                             </div>}
-                                            {!isReadingMore && <div>{author.content.substring(0, 250)}...
+                                            {!isReadingMore && <div>{author?.content.substring(0, 150)}...
                                                 <button className="italic hover:text-white" onClick={() => setIsReadingMore((prev) => !prev)}>
                                                     See more
                                                 </button>

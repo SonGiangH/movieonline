@@ -32,7 +32,7 @@ export default function Hot() {
     const renderHotMovie = () => {
         return hotMovies.map((movie, index) => {
             return (
-                <div key={index}>
+                <a href={`/movie/${movie.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
                         <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film"
@@ -42,7 +42,7 @@ export default function Hot() {
                             {Number(movie.vote_average).toFixed(1)}<i className="bx bx-star ml-[5px]" />
                         </div>
                     </div>
-                </div >
+                </a >
             )
         })
     }
