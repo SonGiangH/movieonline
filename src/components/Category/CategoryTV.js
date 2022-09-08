@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getGenresMovieAction } from '../../redux/action/getGenresMovieAction';
+import { getGenresTVAction } from '../../redux/action/getGenresTVAction';
 
-export default function CategoryMovie() {
-    const { genresMovie } = useSelector(state => state.MoviesReducer)
+export default function CategoryTV() {
+    const { genresTV } = useSelector(state => state.MoviesReducer)
 
     const dispatch = useDispatch();
 
+    // load data after rendering component
     useEffect(() => {
-        const action = getGenresMovieAction();
-        dispatch(action)
+        dispatch(getGenresTVAction())
     }, [dispatch])
 
     // render Category
-    const renderCategoryMovie = () => {
-        return genresMovie.map((genre, index) => {
+    const renderCategoryTV = () => {
+        return genresTV.map((genre, index) => {
             return (
                 <li className='mb-2' key={index}>
                     <a className="px-4 py-2 rounded-full hover:brightness-75 transition duration-300 text-gray-500"
@@ -27,7 +28,7 @@ export default function CategoryMovie() {
     return (
         <div className='mt-28'>
             <ul className="flex flex-wrap gap-3">
-                {renderCategoryMovie()}
+                {renderCategoryTV()}
             </ul>
         </div>
     )

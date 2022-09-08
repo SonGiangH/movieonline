@@ -1,0 +1,7 @@
+.indicator {
+    margin-top: 2.75rem;
+    height: 0.25rem;
+    position: absolute;
+    background: rgb(81, 121, 255);
+    width: 103px;
+}

@@ -3,7 +3,7 @@ import { BaseService } from "./BaseService";
 class MovieService extends BaseService {
     //get All Movies
     getAllTrendingMovies = () => {
-        return this.get('/trending/all/day');
+        return this.get('/trending/movie/day');
     }
 
     // get Genre Movie
@@ -34,6 +34,18 @@ class MovieService extends BaseService {
     // get Upcoming Movie
     getUpcomingMovie = () => {
         return this.get('/movie/upcoming')
+    }
+    // get Movie Detail
+    getDetailsMovie = (id) => {
+        return this.get(`/movie/${id}`)
+    }
+    // get Movie Credit
+    getMovieCredit = (id) => {
+        return this.get(`/movie/${id}/credits`)
+    }
+    // get Review 
+    getReview = (id) => {
+        return this.get(`/movie/${id}/reviews`)
     }
 }
 

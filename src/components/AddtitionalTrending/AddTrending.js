@@ -47,7 +47,7 @@ export default function AddTrending() {
             <ul>
                 {renderMovieTrending()}
             </ul>
-            <button class="py-2 w-full rounded-full mt-7 hover:brightness-75 transition duration-300 text-gray-400"
+            <button className="py-2 w-full rounded-full mt-7 hover:brightness-75 transition duration-300 text-gray-400"
                 style={{ backgroundColor: "rgb(51 51 53/1)" }}>
                 See more
             </button>

@@ -37,7 +37,7 @@ export default function MovieList() {
             arrMovieTrend?.map((item, index) => {
                 return (
                     <SwiperSlide className="flex items-center justify-center" key={index}>
-                        <div className="card__movie">
+                        <a className="card__movie" href={`/movie/${item.id}`}>
                             <img src={`${IMG_URL}w1280${item.backdrop_path}`} style={{ width: 1261, height: 709 }} alt="poster" />
                             <div className="overlay-background" />
                             <div className="movie__body">
@@ -59,7 +59,7 @@ export default function MovieList() {
                                 {item.vote_average.toFixed(1)}
                                 <i className="bx bx-star ml-2" />
                             </div>
-                        </div>
+                        </a>
                     </SwiperSlide>
                 )
             })

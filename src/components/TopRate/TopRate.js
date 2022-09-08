@@ -7,6 +7,7 @@ import { IMG_URL } from '../../utils/cofigVariables';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getTopRateAction } from '../../redux/action/getTopRateAction';
+import { NavLink } from 'react-router-dom';
 
 export default function TopRate() {
     const { topRateMovies } = useSelector(state => state.MoviesReducer)
@@ -33,7 +34,7 @@ export default function TopRate() {
     const renderTopRatedCard = () => {
         return topRateMovies.map((item, index) => {
             return (
-                <div key={index}>
+                <NavLink to={`/movie/${item.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
                         <img src={`${IMG_URL}w342${item.poster_path}`} alt="poster film"
@@ -43,7 +44,7 @@ export default function TopRate() {
                             {item.vote_average}<i className="bx bx-star ml-[5px]" />
                         </div>
                     </div>
-                </div >
+                </NavLink>
             )
         })
     }
