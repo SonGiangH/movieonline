@@ -7,6 +7,7 @@ import { IMG_URL } from '../../utils/cofigVariables';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getHotMovieAction } from '../../redux/action/getHotMovieAction';
+import { Link } from 'react-router-dom';
 
 
 export default function Hot() {
@@ -30,9 +31,9 @@ export default function Hot() {
 
     // render Hot Movies
     const renderHotMovie = () => {
-        return hotMovies.map((movie, index) => {
+        return hotMovies?.map((movie, index) => {
             return (
-                <a href={`/movie/${movie.id}`} key={index}>
+                <Link to={`/movie/${movie.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
                         <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film"
@@ -42,7 +43,7 @@ export default function Hot() {
                             {Number(movie.vote_average).toFixed(1)}<i className="bx bx-star ml-[5px]" />
                         </div>
                     </div>
-                </a >
+                </Link >
             )
         })
     }

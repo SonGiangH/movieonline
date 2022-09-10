@@ -1,45 +1,38 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getPopularMvAction } from '../../redux/action/getPopularMvAction'
-import Slider from "react-slick";
-
-import { IMG_URL } from '../../utils/cofigVariables';
-// import css react-slick
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import './Popular.css'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
+import { IMG_URL } from '../../../utils/cofigVariables';
+import { getUpcomingTvAction } from '../../../redux/actionTV/getUpcomingTvAction'
 
-export default function Popular() {
-    // hook
-    const { popularMovies } = useSelector(state => state.MoviesReducer)
+export default function UpcomingTv() {
+    const { upcomingTVs } = useSelector(state => state.TVReducer);
 
     const dispatch = useDispatch();
 
-    // render component and reload data only once
+    // render list once after loading component
     useEffect(() => {
-        const action = getPopularMvAction()
+        const action = getUpcomingTvAction();
         dispatch(action)
     }, [dispatch])
 
-    // renderMovie Card
-    const renderMovieCard = () => {
-        return (popularMovies?.map((item, index) => {
+    // render Upcoming 
+    const renderUpcoming = () => {
+        return upcomingTVs?.map((movie, index) => {
             return (
-                <Link to={`/movie/${item.id}`} key={index}>
+                <Link to={`/movie/${movie.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
-                        <img src={`${IMG_URL}w342${item.poster_path}`} alt="poster film"
+                        <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film"
                             className="self-center rounded-lg h-[250px] object-cover mx-auto" />
-                        <p className="text-center p-1">{item.title}</p>
+                        <p className="text-center p-1">{movie.title}</p>
                         <div className="absolute top-3 right-2 card__rating"   >
-                            {item.vote_average}<i className="bx bx-star ml-[5px]" />
+                            {movie.vote_average}<i className="bx bx-star ml-[5px]" />
                         </div>
                     </div>
-                </Link>
+                </Link >
             )
         })
-        )
     }
 
     // slick setting
@@ -54,10 +47,10 @@ export default function Popular() {
     return (
         <div className="w-[1310px] mt-5">
             <div className="text-xl text-white font-medium tracking-wider mb-3 text-left">
-                Popular
+                On the air
             </div>
             <Slider {...settings}>
-                {renderMovieCard()}
+                {renderUpcoming()}
             </Slider>
         </div>
     )

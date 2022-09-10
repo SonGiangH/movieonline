@@ -7,7 +7,6 @@ import Search from '../../../components/Search/Search'
 
 export default function CategorySection() {
     const { categoryStatus } = useSelector(state => state.MoviesReducer)
-    console.log(categoryStatus)
     return (
         <div className="w-[15%] px-3 relative" style={{ borderLeft: "1px solid rgb(229 231 235/0.15)" }}>
             <Search />

@@ -6,26 +6,28 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import './MovieList.css'
+import './TVBanner.css'
 // import required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import loading__spinner from '../../assets/img/loading__spinner.gif'
-import { getTrendingMoviesAction } from '../../redux/action/getTrendingMovieAction'
-import { IMG_URL } from '../../utils/cofigVariables';
-import { getGenresAction } from '../../redux/action/getGenresAction';
+import loading__spinner from '../../../assets/img/loading__spinner.gif'
+
+
 import { Link } from 'react-router-dom';
+import { getTrendingTVAction } from '../../../redux/actionTV/getTrendingTVAction';
+import { getGenresAction } from '../../../redux/action/getGenresAction';
+import { IMG_URL } from '../../../utils/cofigVariables';
 
 
-export default function MovieList() {
+export default function TVBanner() {
     // use hook, useState to delcare State
-    const { arrMovieTrend, genres } = useSelector(state => state.MoviesReducer)
+    const { arrTVTrend, genres } = useSelector(state => state.TVReducer)
 
     const dispatch = useDispatch();
 
-    //render list Movie after loading component
+    //render list TV after loading component
     useEffect(() => {
         // getting data from API by action , and dispatch action to store
-        const action1 = getTrendingMoviesAction();
+        const action1 = getTrendingTVAction();
         dispatch(action1)
 
         const action2 = getGenresAction();
@@ -33,12 +35,12 @@ export default function MovieList() {
     }, [dispatch])
 
 
-    const renderMovieList = () => {
+    const renderTVList = () => {
         return (
-            arrMovieTrend?.map((item, index) => {
+            arrTVTrend?.map((item, index) => {
                 return (
                     <SwiperSlide className="flex items-center justify-center" key={index}>
-                        <Link className="card__movie" to={`/movie/${item.id}`}>
+                        <Link className="card__movie" to={`/tv/${item.id}`}>
                             <img src={`${IMG_URL}w1280${item.backdrop_path}`} style={{ width: 1261, height: 709 }} alt="poster" />
                             <div className="overlay-background" />
                             <div className="movie__body">
@@ -67,7 +69,7 @@ export default function MovieList() {
         )
     }
 
-    if (arrMovieTrend === [{}] || !arrMovieTrend || arrMovieTrend.length === 1) {
+    if (arrTVTrend === [{}] || !arrTVTrend || arrTVTrend.length === 1) {
         return (<div className='w-[70%] ml-auto mr-auto flex items-center justify-center'>
             <img src={loading__spinner} alt="loading" width="200px" height="200px" />
         </div>);
@@ -83,7 +85,7 @@ export default function MovieList() {
                     navigation
                 // pagination={{ clickable: true }}
                 >
-                    {renderMovieList()}
+                    {renderTVList()}
                 </Swiper>
             </div>
         )

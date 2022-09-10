@@ -47,6 +47,14 @@ class MovieService extends BaseService {
     getReview = (id) => {
         return this.get(`/movie/${id}/reviews`)
     }
+    // get Videos
+    getVideoMovie = (id) => {
+        return this.get(`/movie/${id}/videos`)
+    }
+    // get similar Movie
+    getSimilarMovie = (id) => {
+        return this.get(`/movie/${id}/similar`)
+    }
 }
 
 export const movieService = new MovieService();

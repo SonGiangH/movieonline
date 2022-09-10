@@ -1,0 +1,26 @@
+.slick-prev {
+    left: 20px!important;
+    z-index: 99;    
+    
+}
+.slick-next {
+    right: 70px!important;
+    z-index: 99; 
+}
+
+.card__rating {
+    background: rgb(81, 121, 255) ;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 4px;
+    font-size: 10px;
+    width: 50px;
+}
+
+.slick-slide {
+    margin: 0 0px;
+  }
+  .slick-list {
+    margin: 0 0px;
+  }

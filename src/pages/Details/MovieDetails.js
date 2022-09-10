@@ -10,12 +10,17 @@ import 'tw-elements'
 import MovieInfo from './MovieInfo/MovieInfo'
 import { getMovieCreditAction } from '../../redux/action/getMovieCreditAction'
 import { getReviewMvAction } from '../../redux/action/getReviewMvAction'
+import { getVideoMovieAction } from '../../redux/action/getVideoMovieAction'
 import MovieRating from './MovieRating/MovieRating'
+import MovieMedia from './Media/MovieMedia'
+import Search from '../../components/Search/Search'
+import SimilarMovie from './SimilarMovie/SimilarMovie'
+import { getSimilarMovieAction } from '../../redux/action/getSimilarMovieAction'
+
 
 export default function MovieDetails() {
     const movieId = useParams()
-    const { movie, movieCredit, reviews } = useSelector(state => state.MoviesReducer)
-    console.log(movie)
+    const { movie, movieCredit, reviews, movieVideos, similarMovie } = useSelector(state => state.MoviesReducer)
 
     const dispatch = useDispatch()
 
@@ -29,40 +34,51 @@ export default function MovieDetails() {
 
         const action3 = getReviewMvAction(movieId.id);
         dispatch(action3)
+
+        const action4 = getVideoMovieAction(movieId.id)
+        dispatch(action4)
+
+        const action5 = getSimilarMovieAction(movieId.id)
+        dispatch(action5)
     }, [dispatch, movieId])
 
     // render Movie detail
     const renderMovieDetail = () => {
         return (
-            <div className="w-[90%] mx-auto">
-                <div className=" relative">
+            <div className="flex-grow min-h-screen">
+                <div className=" relative ml-[90px]">
                     <div className="w-[1520px] h-[400px] rounded-3xl"
                         style={{
                             backgroundImage: `url(${IMG_URL}w1280${movie.backdrop_path})`, backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat', backgroundSize: 'cover'
                         }}>
                     </div>
-                    <div className='overlay-background absolute top-0 left-0 w-[1520px] h-[400px]' style={{ background: 'linear-gradient(to bottom right, transparent, rgba(0,0,0,.7)' }}></div>
-                    <div className="movie__poster w-auto absolute left-64 top-48 flex rounded-xl overflow-hidden">
-                        <div className='w-[185px]'>
-                            <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film" />
-                        </div>
-                        <div className="ml-12 mt-10">
-                            <h2 className="text-5xl font-bold text-white mb-10">{movie.title}</h2>
-                            <div className='movie__tags'>
-                                {movie.genres?.map((genre, i) => {
-                                    return (
-                                        <div className="btn-genre uppercase font-semibold hover:brightness-75 transition duration-300 mr-3" key={i}>{genre.name}</div>
-                                    )
-                                })}
+                    <div className='overlay-background absolute top-0 left-0 w-[1520px] h-[400px] rounded-3xl' style={{ background: 'linear-gradient(to bottom right, transparent, rgba(0,0,0,.7)' }}></div>
+                    <div className="movie__poster w-[1264px] absolute left-64 top-48 flex justify-between rounded-xl overflow-hidden">
+                        {/* Poster- Title-Genre */}
+                        <div className="flex">
+                            <div className='w-[185px]'>
+                                <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film" />
+                            </div>
+                            <div className="ml-12 mt-10">
+                                <h2 className="text-5xl font-bold text-white mb-10">{movie.title}</h2>
+                                <div className='movie__tags'>
+                                    {movie.genres?.map((genre, i) => {
+                                        return (
+                                            <div className="btn-genre uppercase font-semibold hover:brightness-75 transition duration-300 mr-3" key={i}>{genre.name}</div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
-                        <a className="flex gap-6 items-center pl-6 pr-12 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mt-28 mb-32" href="/movie/361743/watch">
+                        {/* Watch button */}
+                        <a className="flex gap-6 items-center pl-6 pr-12 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mt-[116px] mb-32 mr-[5%] " href="/movie/361743/watch">
                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"></path>
                             </svg><span className="text-lg font-medium">WATCH</span>
                         </a>
                     </div>
+                    {/* Icon like-share-action */}
                     <div className="flex gap-3 absolute top-[2%] right-[15%]">
                         <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group false">
                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" className="text-white group-hover:text-primary transition duration-300 false" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -81,78 +97,92 @@ export default function MovieDetails() {
                         </button>
                     </div>
                 </div>
-                <div className="w-[1520px] flex ml-10">
-                    <div className="movie__rating w-[10%] flex flex-col relative">
+                {/* Main Content */}
+                <div className="w-[1520px] flex ml-20">
+                    {/* Rating section */}
+                    <div className="movie__rating flex flex-col shrink-0 md:max-w-[150px] relative">
                         {/* Border Right div */}
                         <div className="absolute top-[15%] bottom-0 w-full" style={{ borderRight: "1px solid rgb(229 231 235/0.15)" }}></div>
-                        <div className="flex flex-col gap-8 items-center w-[50%] my-40">
+                        <div className="flex flex-col gap-8 items-center w-full my-40">
                             <p className="text-white uppercase text-xl font-semibold">RATING</p>
-                            <MovieRating movie={movie} />
+                            <div className="w-[50%]">
+                                <MovieRating movie={movie} />
+                            </div>
                         </div>
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-3 text-center">
                             <p className="text-white uppercase text-xl font-semibold">RUNTIME</p>
                             <p className="text-gray-400 text-xl">{movie.runtime} min</p>
                         </div>
                     </div>
-                    <div className="movie__details w-[60%]">
+                    {/* Overall-Cast-Review section */}
+                    <div className="movie__details w-[1064px] flex-grow relative">
+                        <div className="absolute top-0 bottom-0 w-full" style={{ borderRight: "1px solid rgb(229 231 235/0.15)" }}></div>
                         <MovieInfo movie={movie} credit={movieCredit} reviews={reviews} />
                     </div>
-                    <div className="movie__media"></div>
+                    {/* Meida trailer */}
+                    <div className="movie__media w-[304px] pl-10">
+                        <MovieMedia videos={movieVideos} />
+                    </div>
                 </div>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen max-w-full flex" style={{ backgroundColor: "rgb(28 28 30/1)" }}>
-            <div className="fixed top-0 left-0 bottom-0 min-h-screen flex flex-col w-[6%] rgb(28 28 30/1) overflow-hidden">
+        <div className="min-h-screen max-w-full flex flex-col md:flex-row" style={{ backgroundColor: "rgb(28 28 30/1)" }}>
+            {/* Side bar */}
+            <div className="fixed top-0 left-0 bottom-0 min-h-screen flex flex-col pl-5 shrink-0 w-full overflow-hidden">
                 <div className="flex items-center justify-center h-20 w-14 mb-[220px]">
                     <img src={logo} alt="logo" className="w-10 h-10" />
                 </div>
                 <ul className="flex flex-col py-4">
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/home" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-home" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/explore" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-compass" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/search" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-search" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/user/bookmark" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-bookmark" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/user/history" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-history" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/user/profile" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-user" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/user/notification" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-bell" /></span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
+                        <NavLink to="/logout" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-400 hover:text-white">
                             <span className="inline-flex items-center justify-center h-12 w-12 text-3xl text-gray-400"><i className="bx bx-log-out" /></span>
                         </NavLink>
                     </li>
                 </ul>
             </div>
             {renderMovieDetail()}
+            <div className="relative md:max-w-[310px] w-full shrink-0 flex flex-col">
+                <Search />
+                <SimilarMovie similarMovie={similarMovie} />
+            </div>
         </div>
     )
 }

@@ -80,7 +80,7 @@ export default function MovieInfo(props) {
                         <p className="mt-4 text-gray-400"><span>Release date: </span>{movie.release_date}</p>
                         <p className="mt-4 text-gray-400"><span>Spoken Language:</span>{movie.spoken_languages?.map((item, index) => {
                             return (
-                                <Fragment key={index}> {item.name}</Fragment>
+                                <Fragment key={index}> {item.name} </Fragment>
                             )
                         })}
                         </p>
@@ -106,7 +106,7 @@ export default function MovieInfo(props) {
                     </div>
                 </div>
                 {/* Reviews */}
-                <div role="tabpanel" id="panel-3" className="absolute top-0 left-24 invisible opacity-0 tab-panel p-6 transition duration-300 w-[1000px]">
+                <div role="tabpanel" id="panel-3" className="absolute top-0 left-10 invisible opacity-0 tab-panel p-6 transition duration-300 w-[98%]">
                     <div className="flex flex-col max-h-[400px] overflow-y-auto pr-4">
                         {reviews?.map((author, index) => {
                             return (

@@ -10,7 +10,9 @@ const stateDefault = {
     categoryStatus: [],
     movie: [],
     movieCredit: [],
-    reviews: []
+    reviews: [],
+    movieVideos: [],
+    similarMovie: []
 }
 
 //funtion
@@ -62,6 +64,14 @@ export const MoviesReducer = ((state = stateDefault, action) => {
         }
         case 'GET_REVIEWS': {
             state.reviews = action.reviews
+            return { ...state }
+        }
+        case 'GET_VIDEOS_MV': {
+            state.movieVideos = action.videos
+            return { ...state }
+        }
+        case 'GET_SIMILAR_MOVIE': {
+            state.similarMovie = action.similarMovie
             return { ...state }
         }
         default: return { ...state }

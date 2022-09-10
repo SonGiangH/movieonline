@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Slider from "react-slick";
-
-import { IMG_URL } from '../../utils/cofigVariables';
-// import css react-slick
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { getTopRateAction } from '../../redux/action/getTopRateAction';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Slider from 'react-slick';
+import { IMG_URL } from '../../../utils/cofigVariables';
+import { getTopRateTVAction } from '../../../redux/actionTV/getTopRateTVAction'
 
-export default function TopRate() {
-    const { topRateMovies } = useSelector(state => state.MoviesReducer)
+export default function TopRateTV() {
+    const { topRateTVs } = useSelector(state => state.TVReducer)
+
     const dispatch = useDispatch();
 
     // render once after loading component
     useEffect(() => {
         // create action
-        const action = getTopRateAction();
+        const action = getTopRateTVAction();
         dispatch(action);
     }, [dispatch])
 
@@ -32,14 +29,14 @@ export default function TopRate() {
 
     // Render Movie Card
     const renderTopRatedCard = () => {
-        return topRateMovies?.map((item, index) => {
+        return (topRateTVs?.map((item, index) => {
             return (
                 <NavLink to={`/movie/${item.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
                         <img src={`${IMG_URL}w342${item.poster_path}`} alt="poster film"
                             className="self-center rounded-lg h-[250px] object-cover mx-auto" />
-                        <p className="text-center p-1">{item.title}</p>
+                        <p className="text-center p-1">{item.name}</p>
                         <div className="absolute top-3 right-2 card__rating"   >
                             {item.vote_average}<i className="bx bx-star ml-[5px]" />
                         </div>
@@ -47,6 +44,7 @@ export default function TopRate() {
                 </NavLink>
             )
         })
+        )
     }
 
 
