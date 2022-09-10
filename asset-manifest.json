@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movieonline/static/css/main.754eb77a.css",
-    "main.js": "/movieonline/static/js/main.36b6370e.js",
+    "main.css": "/movieonline/static/css/main.be65eb35.css",
+    "main.js": "/movieonline/static/js/main.330bbd24.js",
     "static/js/787.a7f7f6cf.chunk.js": "/movieonline/static/js/787.a7f7f6cf.chunk.js",
     "static/media/logo.png": "/movieonline/static/media/logo.298e7311ec9d298a3caf.png",
     "static/media/loading__spinner.gif": "/movieonline/static/media/loading__spinner.0f8e3ead3dcf6f8b6f69.gif",
@@ -11,12 +11,12 @@
     "static/media/slick.ttf": "/movieonline/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/movieonline/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/movieonline/index.html",
-    "main.754eb77a.css.map": "/movieonline/static/css/main.754eb77a.css.map",
-    "main.36b6370e.js.map": "/movieonline/static/js/main.36b6370e.js.map",
+    "main.be65eb35.css.map": "/movieonline/static/css/main.be65eb35.css.map",
+    "main.330bbd24.js.map": "/movieonline/static/js/main.330bbd24.js.map",
     "787.a7f7f6cf.chunk.js.map": "/movieonline/static/js/787.a7f7f6cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.754eb77a.css",
-    "static/js/main.36b6370e.js"
+    "static/css/main.be65eb35.css",
+    "static/js/main.330bbd24.js"
   ]
 }
