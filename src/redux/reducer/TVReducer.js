@@ -7,10 +7,10 @@ const stateDefault = {
     hotTVs: [],
     upcomingTVs: [],
     categoryStatus: [],
-    TV: [],
+    TvDetails: [],
     TVCredit: [],
     reviews: [],
-    TVVideos: [],
+    TvVideos: [],
     similarTV: []
 }
 
@@ -50,7 +50,7 @@ export const TVReducer = ((state = stateDefault, action) => {
             return { ...state }
         }
         case 'GET_DETAIL_TV': {
-            state.TV = action.TV
+            state.TvDetails = action.TvDetails
             return { ...state }
         }
         case 'GET_TV_CREDIT': {
@@ -62,7 +62,7 @@ export const TVReducer = ((state = stateDefault, action) => {
             return { ...state }
         }
         case 'GET_VIDEOS_MV': {
-            state.TVVideos = action.videos
+            state.TvVideos = action.videos
             return { ...state }
         }
         case 'GET_SIMILAR_TV': {

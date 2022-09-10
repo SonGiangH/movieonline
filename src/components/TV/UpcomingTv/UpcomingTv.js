@@ -18,16 +18,16 @@ export default function UpcomingTv() {
 
     // render Upcoming 
     const renderUpcoming = () => {
-        return upcomingTVs?.map((movie, index) => {
+        return upcomingTVs?.map((tv, index) => {
             return (
-                <Link to={`/movie/${movie.id}`} key={index}>
+                <Link to={`/tv/${tv.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
-                        <img src={`${IMG_URL}w342${movie.poster_path}`} alt="poster film"
+                        <img src={`${IMG_URL}w342${tv.poster_path}`} alt="poster film"
                             className="self-center rounded-lg h-[250px] object-cover mx-auto" />
-                        <p className="text-center p-1">{movie.title}</p>
+                        <p className="text-center p-1">{tv.name}</p>
                         <div className="absolute top-3 right-2 card__rating"   >
-                            {movie.vote_average}<i className="bx bx-star ml-[5px]" />
+                            {tv.vote_average}<i className="bx bx-star ml-[5px]" />
                         </div>
                     </div>
                 </Link >

@@ -11,30 +11,30 @@ class TvService extends BaseService {
         return this.get('/genre/tv/list');
     }
 
-    // get Popular Movie
+    // get Popular TV
     getPopularTV = () => {
         return this.get('/tv/popular');
     }
 
-    // get Top Rate Movie
+    // get Top Rate TV
     getTopRateTV = () => {
         return this.get('/tv/top_rated')
     }
 
-    // get Hot Movie
+    // get Hot TV
     getHotTV = () => {
         return this.getWithPage('/trending/tv/day', 2)
     }
 
-    // get Upcoming Movie
+    // get Upcoming TV
     getUpcomingTV = () => {
         return this.get('/tv/on_the_air')
     }
-    // get Movie Detail
+    // get TV Detail
     getDetailsTV = (id) => {
         return this.get(`/tv/${id}`)
     }
-    // get Movie Credit
+    // get TV Credit
     getTVCredit = (id) => {
         return this.get(`/tv/${id}/credits`)
     }

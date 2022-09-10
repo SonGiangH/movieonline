@@ -31,7 +31,7 @@ export default function TopRateTV() {
     const renderTopRatedCard = () => {
         return (topRateTVs?.map((item, index) => {
             return (
-                <NavLink to={`/movie/${item.id}`} key={index}>
+                <NavLink to={`/tv/${item.id}`} key={index}>
                     <div className="relative bg-black rounded-xl text-white border-2 border-black w-[167px] h-[280px] overflow-hidden
                     hover:scale-105 hover:brightness-110 transition duration-300">
                         <img src={`${IMG_URL}w342${item.poster_path}`} alt="poster film"

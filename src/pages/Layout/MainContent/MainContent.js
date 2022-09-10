@@ -25,7 +25,7 @@ import UpcomingTv from '../../../components/TV/UpcomingTv/UpcomingTv'
 
 export default function MainContent() {
     const { categoryStatus } = useSelector(state => state.MoviesReducer)
-    console.log(categoryStatus)
+
     const dispatch = useDispatch()
     return (
         <div className="w-[1261px] mx-auto">
@@ -51,10 +51,10 @@ export default function MainContent() {
                 <div className="tab-content" id="tabs-tabContent">
                     <div className="tab-pane fade show text-white active" id="tabs-movie" role="tabpanel" aria-labelledby="tabs-movie-tab">
                         <MovieList />
-                        <Popular />
-                        <TopRate />
-                        <Hot />
-                        <Upcoming />
+                        {categoryStatus ? <Popular /> : <PopularTV />}
+                        {categoryStatus ? <TopRate /> : <TopRateTV />}
+                        {categoryStatus ? <Hot /> : <HotTv />}
+                        {categoryStatus ? <Upcoming /> : <UpcomingTv />}
                     </div>
                     <div className="tab-pane fade text-white" id="tabs-tv" role="tabpanel" aria-labelledby="tabs-tv-tab">
                         <TVBanner />
