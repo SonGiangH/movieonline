@@ -33,5 +33,5 @@ The Movie Database API
 ![alt text](https://github.com/SonGiangH/movieonline/blob/main/src/assets/img/movie5.PNG?raw=true)
 ![alt text](https://github.com/SonGiangH/movieonline/blob/main/src/assets/img/movie6.PNG?raw=true)
 
-# start
+# Start
 From 31st August 2022, ongoing.
